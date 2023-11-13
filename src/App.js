@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import PostalCodeForm from './components/PostalCodeForm';
+import LocationInfo from './components/LocationInfo';
 
-function App() {
+const App = () => {
+  const [location, setLocation] = useState(null);
+
+  const handleFormSubmit = (data) => {
+    setLocation(data);
+  };
+
+  const handleClearLocation = () => {
+    setLocation(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='w-[100%] h-[100%] box-border flex flex-col text-black '> 
+      <PostalCodeForm onLocationChange={handleFormSubmit} />
+      <LocationInfo location={location} onClearLocation={handleClearLocation} />
     </div>
   );
-}
+};
 
 export default App;
